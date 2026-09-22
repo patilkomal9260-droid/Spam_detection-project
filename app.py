@@ -7,16 +7,15 @@ from pymongo import MongoClient
 
 MONGO_URI = "mongodb://localhost:27017/"
 
-# (टीप: जर तुम्ही MongoDB Atlas (Cloud) वापरत असाल, तर खालीलप्रमाणे रिप्लेस करा)
-# MONGO_URI = "mongodb+srv://<username>:<password>@cluster.mongodb.net/?retryWrites=true&w=majority"
+
 
 @st.cache_resource
 def get_database():
     client = MongoClient(MONGO_URI)
-    return client['spam_detection_db'] # Database नेम
+    return client['spam_detection_db'] # Database 
 
 db = get_database()
-collection = db['predictions'] # Collection (Table) नेम
+collection = db['predictions'] # Collection (Table) 
 
 
 # 2. Saved Models Load
@@ -50,7 +49,7 @@ if st.button("Predict"):
             st.write(f"Confidence: **{confidence_val*100:.2f}%**")
 
        
-        # 3. MongoDB मध्ये प्रेडिक्शन डेटा सेव्ह करणे
+        # 3. save prediction data in MongoDB 
     
         log_data = {
             "message": user_input,
